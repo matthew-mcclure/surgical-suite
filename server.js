@@ -1,13 +1,14 @@
 const app = require('express')()
+require('dotenv').config()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const path = require('path')
-const port = 8080
+const port = process.env.PORT || 8080
 mongoose.Promise = global.Promise
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/sample')
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017')
 
 process.on('SIGINT', function() {  
   mongoose.connection.close(function () { 
@@ -33,6 +34,6 @@ app.use(require('./app/routes'))
 })*/
 
 
-app.listen(8080, ()=> {
+app.listen(port, ()=> {
 	console.log(`Magic happens on port ${port}`)
 })
