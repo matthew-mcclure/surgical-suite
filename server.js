@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080
 mongoose.Promise = global.Promise
 
 
-/*mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017')
+//mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017')
 
 process.on('SIGINT', function() {  
   mongoose.connection.close(function () { 
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({
 app.use(methodOverride('X-HTTP-Method-Override'))
 
 app.use(require('express').static(path.join(__dirname, 'node_modules')))
-app.use(require('express').static(path.join(__dirname, 'client/public')))*/
+app.use(require('express').static(path.join(__dirname, 'client/public')))
 
 //app.use(require('./app/routes'))
 
