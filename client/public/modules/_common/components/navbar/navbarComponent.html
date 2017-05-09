@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Title Page</title>
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body ng-app="public" ng-controller="SampleController as SampleCtrl">
-
-	<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -62,57 +49,3 @@
 			</div>
 		</div>
 	</nav>
-
-
-	<!-- home screen image -->
-	<img src="http://www.grafical-net.com/ien/wp-content/uploads/2012/04/placeholder_wide.jpg" style="width:100%" />
-
-
-	<div class="container">
-		<div ng-repeat="sample in SampleCtrl.samples" class="col-md-3" style="height: 200px; border-style: solid; margin: 45px; padding: 0px">
-			<h1 style="border-bottom: solid; margin: 0px">{{sample.name}}</h1>
-			<div style="background-size: contain; background-image: url(http://couvignou.com/wp-content/themes/divergent/images/placeholder.jpg); height: 158px; width: 100%">
-				<p>{{sample.description}}</p>
-			</div>
-		</div>
-	</div>
-
-
-
-	<footer style="background-color: black; margin-top: 20px">Copyright &copy; Sample.com</footer>
-
-	<script src="angular/angular.min.js"></script>
-	<script>
-		angular.module('public', [])
-	</script>
-	<script src='./services/SampleService.js'></script>
-	<script>
-		angular.module('public')
-			.controller('SampleController', SampleController)
-
-		SampleController.$inject = ['SampleService']
-
-		function SampleController(SampleService) {
-			var vm = this
-			vm.samples = null
-
-
-			SampleService.getAll(onStaffSuccess, onError)
-			SampleService.insertOne(onRoomsSuccess, onError)
-
-			function onStaffSuccess(response) {
-				vm.samples = response
-			}
-
-			function onRoomsSuccess(response) {
-				vm.rooms = response
-			}
-
-			function onError(response) {
-				console.log(response)
-			}
-		}
-	</script>
-</body>
-
-</html>

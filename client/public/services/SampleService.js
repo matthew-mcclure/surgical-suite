@@ -2,7 +2,7 @@
 	'use strict'
 
 	angular
-		.module('app')
+		.module('public')
 		.factory('SampleService', SampleService)
 
 	function SampleService($http) {

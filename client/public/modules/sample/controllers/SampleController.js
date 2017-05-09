@@ -1,5 +1,5 @@
 (function (){
-    angular.module('app.sample')
+    angular.module('public.sample')
         .controller('SampleController', SampleController)
 
     function SampleController () {
