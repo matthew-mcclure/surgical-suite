@@ -9,7 +9,6 @@ mongoose.Promise = global.Promise
 
 
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017')
-//mongoose.connect('mongodb://admin:adminpassword@ds123381.mlab.com:23381/mean-template' || 'mongodb://localhost:27017')
 
 process.on('SIGINT', function() {  
   mongoose.connection.close(function () { 
@@ -29,11 +28,6 @@ app.use(require('express').static(path.join(__dirname, 'node_modules')))
 app.use(require('express').static(path.join(__dirname, 'client/public')))
 
 app.use(require('./app/routes'))
-
-
-/*app.use((req, res) =>  {
-	res.sendfile('public/index.html')
-})*/
 
 
 app.listen(port, ()=> {
