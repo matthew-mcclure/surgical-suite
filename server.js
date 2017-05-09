@@ -27,13 +27,17 @@ app.use(methodOverride('X-HTTP-Method-Override'))
 app.use(require('express').static(path.join(__dirname, 'node_modules')))
 app.use(require('express').static(path.join(__dirname, 'client/public')))
 
-app.use(require('./app/routes'))
+//app.use(require('./app/routes'))
+
+app.get('/', function(req, res, next){
+    res.sendStatus(200);
+});
 
 /*app.use((req, res) =>  {
 	res.sendfile('public/index.html')
 })*/
 
 
-app.listen(port || 1234, ()=> {
+app.listen(port, ()=> {
 	console.log(`Magic happens on port ${port}`)
 })
