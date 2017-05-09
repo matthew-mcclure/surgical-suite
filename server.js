@@ -34,6 +34,6 @@ app.use(require('./app/routes'))
 })*/
 
 
-app.listen(port, ()=> {
+app.listen(port || 1234, ()=> {
 	console.log(`Magic happens on port ${port}`)
 })
