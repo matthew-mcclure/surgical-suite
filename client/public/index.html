@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Title Page</title>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body ng-app="public" ng-controller="SampleController as SampleCtrl">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				 aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Surgical Suite</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Link</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-left">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Link</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br>
+
+
+	<div class="container col-md-9" style="">
+
+		<div ng-repeat="room in SampleCtrl.rooms" class="col-md-4">
+			<div style="background-color: lightblue; padding-bottom: 3px; padding-left: 3px; border-style: solid">
+				<h1>{{room.name}}</h1>
+				<h4>Equipment: </h4>
+				<ul>
+					<li ng-repeat="equipment in room.equipment">
+						{{equipment}}
+					</li>
+				</ul>
+
+				<h4>Assign Staff: </h4>
+				<select ng-model="selectedName" ng-options="staff.name for staff in SampleCtrl.staff">
+			
+		</select>
+				<!-- Trigger/Open The Modal -->
+				<button class="modalBtn btn-primary">Room Info</button>
+			</div>
+			<br>
+		</div>
+
+
+
+	</div>
+	<div class="col-md-3" style="height: 100vh; background-color: lightpink; float: right; border-style: solid">
+		<h1>Get info on staff: </h1>
+		<select ng-model="SampleCtrl.selectedStaff" ng-options="staff.name for staff in SampleCtrl.staff">
+	</select>
+		<h1>{{SampleCtrl.selectedStaff.name}}</h1>
+		<h2>{{SampleCtrl.selectedStaff.title | uppercase}}</h2>
+		<h3>{{SampleCtrl.selectedStaff.status | uppercase}}</h2>
+		<h3>Specialties:</h3>
+		<ul>
+			<li ng-repeat="skill in SampleCtrl.selectedStaff.skills">
+				{{skill}}
+			</li>
+		</ul>
+	</div>
+
+
+
+	<!-- Trigger/Open The Modal -->
+	<button id="myBtn" class="btn-primary" onclick="SampleCtrl.modalClick()">Open Modal</button>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<p>Some more info about the room..</p>
+		</div>
+
+	</div>
+
+
+
+
+	<style>
+		/* The Modal (background) */
+
+		.modal {
+			display: none;
+			/* Hidden by default */
+			position: fixed;
+			/* Stay in place */
+			z-index: 1;
+			/* Sit on top */
+			left: 0;
+			top: 0;
+			width: 100%;
+			/* Full width */
+			height: 100%;
+			/* Full height */
+			overflow: auto;
+			/* Enable scroll if needed */
+			background-color: rgb(0, 0, 0);
+			/* Fallback color */
+			background-color: rgba(0, 0, 0, 0.4);
+			/* Black w/ opacity */
+		}
+		/* Modal Content/Box */
+
+		.modal-content {
+			background-color: #fefefe;
+			margin: 15% auto;
+			/* 15% from the top and centered */
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+			/* Could be more or less, depending on screen size */
+		}
+		/* The Close Button */
+
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	</style>
+
+
+
+	<footer style="background-color: black; margin-top: 20px">Copyright &copy; Sample.com</footer>
+
+	<script src="angular/angular.min.js"></script>
+	<script>
+		angular.module('public', [])
+	</script>
+	<script src='./services/SampleService.js'></script>
+	<script>
+		angular.module('public')
+			.controller('SampleController', SampleController)
+
+		SampleController.$inject = ['SampleService']
+
+		function SampleController(SampleService) {
+			var vm = this
+			vm.rooms = null
+			vm.staff = null
+			vm.selectedStaff = null
+			vm.modalClick = modalClick
+
+			function modalClick() {
+				console.log('attached')
+			}
+
+			SampleService.getStaff(onStaffSuccess, onError)
+			SampleService.getRooms(onRoomsSuccess, onError)
+
+			function onStaffSuccess(response) {
+				vm.staff = response
+				vm.selectedStaff = vm.staff[0]
+				console.log(vm.staff)
+			}
+
+			function onRoomsSuccess(response) {
+				vm.rooms = response
+				console.log(vm.rooms)
+			}
+
+			function onError(response) {
+				console.log(response)
+			}
+		}
+	</script>
+
+
+
+	<script>
+		// Get the modal
+		var modal = document.getElementById('myModal');
+
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks on the button, open the modal 
+		btn.onclick = function () {
+			modal.style.display = "block";
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function () {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+
+
+</body>
+
+</html>
